@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block titulo %} Inicio de CRUD {% endblock titulo %}
+
+{% block contenido %}
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Cantidad</th>
+			<th>Precio</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for producto in productos %}
+			<tr>
+				<td>{{ producto.nombre }}</td>
+				<td>{{ producto.cantidad }}</td>
+				<td>{{ producto.precio }}</td>
+				<td><a href="{% url principal.views.editar_producto producto.id %}" class="btn">Editar</a> <a href="{% url principal.views.borrar_producto producto.id %}" class="btn btn-danger">Borrar</a></td>
+			</tr>
+		{% empty %}
+			<tr>
+				<td colspan="4">No hay productos.</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<a href="{% url principal.views.agregar_producto %}" class="btn btn-primary">Agregar producto</a>
+{% endblock contenido %}

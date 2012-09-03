@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block titulo %}{% endblock titulo %}
+
+{% block contenido %}
+<form method="post">{% csrf_token %}
+	{{ formulario.as_p }}
+	<input type="submit" value="{% block nombre %}{% endblock nombre %}" class="btn btn-primary">
+	<a href="{% url principal.views.index %}" class="btn">Volver</a>
+</form>
+{% endblock contenido %}
